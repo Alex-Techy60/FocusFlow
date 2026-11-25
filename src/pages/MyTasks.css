@@ -1,0 +1,105 @@
+/* MyTasks page */
+
+.task-library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.library-task-card {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.library-task-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 16px rgba(15,23,42,0.07);
+}
+
+.library-task-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.library-task-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.library-task-desc {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #64748b;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.library-task-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.library-task-date {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.library-task-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 4px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.btn-add-to-today {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 7px 12px;
+  background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+  border: 1.5px solid #bfdbfe;
+  border-radius: 8px;
+  color: #2563eb;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-add-to-today:hover {
+  background: linear-gradient(135deg, #dbeafe, #ede9fe);
+  border-color: #93c5fd;
+}
+
+/* Task form modal */
+.task-lib-form {
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 20px 60px rgba(15,23,42,0.18);
+}

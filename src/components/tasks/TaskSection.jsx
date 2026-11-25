@@ -2,48 +2,59 @@ import React, { useState } from "react";
 import TaskList from "./TaskList";
 import './Task.css';
 
-function TaskSection({ tasks=[] }) {
+function TaskSection({ tasks = [], onToggle, onRemove }) {
+  const [status, setStatus] = useState('pending');
 
-    const [status, setStatus] = useState('pending');
+  const pendingTasks = tasks.filter((t) => !t.completed);
+  const completedTasks = tasks.filter((t) => t.completed);
+  const allTasks = tasks;
 
-    const pendingTasks = tasks.filter((task) => !task.completed);
-    const completedTasks = tasks.filter((task) => task.completed);
-    const allTasks = tasks;
-    const pendingCount = pendingTasks.length;
-    const completedCount = completedTasks.length;
-    const allCount = allTasks.length;
+  const filteredTasks =
+    status === 'pending' ? pendingTasks :
+    status === 'completed' ? completedTasks :
+    allTasks;
 
-    const filteredTasks = (status === 'pending' ? pendingTasks : status === 'completed' ? completedTasks : allTasks);
+  const tabs = [
+    { id: 'pending',   label: 'Pending',   count: pendingTasks.length },
+    { id: 'completed', label: 'Completed', count: completedTasks.length },
+    { id: 'all',       label: 'All',       count: allTasks.length },
+  ];
 
-    const tabs = [
-        { id: 'pending', label: 'Pending', count: pendingCount },
-        { id: 'completed', label: 'Completed', count: completedCount },
-        { id: 'all', label: 'All Tasks', count: allCount }
-    ];
+  return (
+    <section className="task-section">
+      <div className="task-section-header">
+        <div className="task-tabs" role="tablist" aria-label="Task status filter">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={status === tab.id}
+              className={`task-tab ${status === tab.id ? 'active' : ''}`}
+              onClick={() => setStatus(tab.id)}
+            >
+              <span>{tab.label}</span>
+              <span className="task-tab-count">{tab.count}</span>
+            </button>
+          ))}
+        </div>
+      </div>
 
-    return (
-        <section className="task-section">
-            <div className="task-section-header">
-                <div className="task-tabs" role="tablist" aria-label="Task status filter">
-                    {tabs.map((tab) => (
-                        <button
-                            key={tab.id}
-                            type="button"
-                            role="tab"
-                            aria-selected={status === tab.id}
-                            className={`task-tab ${status === tab.id ? 'active' : ''}`}
-                            onClick={() => setStatus(tab.id)}
-                        >
-                            <span>{tab.label}</span>
-                            <span className="task-tab-count">{tab.count}</span>
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            <TaskList tasks={filteredTasks} />
-        </section>
-    )
+      {filteredTasks.length === 0 ? (
+        <div className="task-list-empty">
+          {status === 'pending' && tasks.length > 0
+            ? '🎉 All tasks completed for today!'
+            : status === 'completed' && tasks.length > 0
+            ? 'No completed tasks yet.'
+            : tasks.length === 0
+            ? 'No tasks in today\'s plan. Add a task above!'
+            : 'No tasks here.'}
+        </div>
+      ) : (
+        <TaskList tasks={filteredTasks} onToggle={onToggle} onRemove={onRemove} />
+      )}
+    </section>
+  );
 }
 
 export default TaskSection;

@@ -1,0 +1,213 @@
+/* Categories page */
+
+.categories-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.category-card {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-card:hover {
+  border-color: var(--cat-color, #3b82f6);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.category-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.category-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.category-icon {
+  font-size: 1.3rem;
+}
+
+.category-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.category-name {
+  margin: 0 0 2px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.category-count {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.category-mini-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mini-progress-bar {
+  width: 80px;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.mini-progress-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  min-width: 36px;
+  text-align: right;
+}
+
+.expand-arrow {
+  font-size: 1.3rem;
+  color: #94a3b8;
+  transition: transform 0.25s ease;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.expand-arrow.expanded {
+  transform: rotate(90deg);
+}
+
+/* Task list inside a category */
+.category-task-list {
+  border-top: 1px solid #f1f5f9;
+  padding: 12px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeSlideIn 0.2s ease;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cat-empty {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  text-align: center;
+  padding: 12px 0;
+}
+
+.cat-task-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border-radius: 9px;
+  border: 1px solid #f1f5f9;
+  transition: border-color 0.15s;
+}
+
+.cat-task-row:hover {
+  border-color: #e2e8f0;
+}
+
+.cat-task-title {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cat-task-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.btn-add-to-today-sm {
+  padding: 4px 10px;
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+  border-radius: 7px;
+  color: #2563eb;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.btn-add-to-today-sm:hover {
+  background: #dbeafe;
+}
+
+/* Quick add inside category */
+.cat-quick-add {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.cat-quick-add-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.cat-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 9px;
+  background: transparent;
+  color: #64748b;
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  text-align: left;
+}
+
+.cat-add-btn:hover {
+  border-color: var(--cat-color, #3b82f6);
+  color: var(--cat-color, #3b82f6);
+  background: var(--cat-bg, #eff6ff);
+}

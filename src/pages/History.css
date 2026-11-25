@@ -1,0 +1,237 @@
+/* History page */
+
+.history-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.history-date-panel {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px;
+  position: sticky;
+  top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.date-picker-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.history-active-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.active-dates-title {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.active-dates-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.active-date-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  text-align: left;
+}
+
+.active-date-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.active-date-active {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.active-date-active:hover {
+  background: #dbeafe;
+}
+
+.active-date-count {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+/* Detail panel */
+.history-detail-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.history-day-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.history-day-title {
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.025em;
+}
+
+.history-day-summary {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.history-pct-badge {
+  font-size: 1.2rem;
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.history-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.history-progress-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.history-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.history-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.history-progress-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.history-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-task-item {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: border-color 0.15s, opacity 0.15s;
+}
+
+.history-task-done {
+  opacity: 0.65;
+  background: #f8fafc;
+}
+
+.history-task-check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+}
+
+.history-task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.history-task-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f172a;
+  word-break: break-word;
+}
+
+.history-task-done .history-task-title {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+.history-task-desc {
+  font-size: 0.82rem;
+  color: #64748b;
+  word-break: break-word;
+}
+
+.history-task-badges {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .history-layout {
+    grid-template-columns: 1fr;
+  }
+  .history-date-panel {
+    position: static;
+  }
+}

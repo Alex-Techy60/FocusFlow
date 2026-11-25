@@ -1,0 +1,271 @@
+/* Progress page */
+
+.progress-stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.stat-card:hover {
+  border-color: var(--stat-color, #3b82f6);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.stat-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.stat-sub {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Bar chart */
+.progress-chart-card {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.chart-title {
+  margin: 0 0 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.bar-chart {
+  display: flex;
+  gap: 12px;
+  height: 220px;
+}
+
+.bar-chart-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.y-label {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.bar-chart-area {
+  flex: 1;
+  position: relative;
+}
+
+.bar-chart-grid {
+  position: absolute;
+  inset: 0;
+  padding-bottom: 24px;
+  pointer-events: none;
+}
+
+.grid-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #f1f5f9;
+}
+
+.bars-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 100%;
+  padding-bottom: 24px;
+  overflow-x: auto;
+  position: relative;
+}
+
+.bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 28px;
+  height: 100%;
+  position: relative;
+}
+
+.bar-col:hover .bar-tooltip {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.bar-tooltip {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background: #0f172a;
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.bar {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.bar-inner {
+  width: 100%;
+  background: linear-gradient(180deg, #60a5fa, #3b82f6);
+  border-radius: 5px 5px 3px 3px;
+  min-height: 4px;
+  transition: opacity 0.15s ease;
+}
+
+.bar-col:hover .bar-inner {
+  opacity: 0.85;
+}
+
+.bar-label {
+  font-size: 0.65rem;
+  color: #94a3b8;
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Table */
+.progress-history-table {
+  background: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.progress-table-wrap {
+  overflow-x: auto;
+}
+
+.progress-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.progress-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 10px 12px;
+  border-bottom: 1.5px solid #f1f5f9;
+}
+
+.progress-table td {
+  padding: 11px 12px;
+  color: #334155;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.progress-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.progress-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rate-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.rate-excellent {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.rate-good {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.rate-low {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.rate-zero {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+.table-mini-bar {
+  width: 100px;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.table-mini-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
