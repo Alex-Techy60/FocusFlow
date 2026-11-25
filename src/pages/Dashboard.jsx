@@ -4,6 +4,15 @@ import ProgressBar from '../components/progress/ProgressBar';
 import TaskSection from '../components/tasks/TaskSection';
 import './Dashboard.css';
 
+function formatTodayLabel(dateKey) {
+  return new Date(dateKey + 'T00:00:00').toLocaleDateString('en-US', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
+
 function Dashboard() {
   const {
     getTasksForDay,
@@ -20,12 +29,7 @@ function Dashboard() {
   const tasks = getTasksForDay(today);
   const completed = tasks.filter((t) => t.completed).length;
 
-  const todayLabel = new Date().toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  const todayLabel = formatTodayLabel(today);
 
   const [showForm, setShowForm] = useState(false);
   const [showPickFromLibrary, setShowPickFromLibrary] = useState(false);

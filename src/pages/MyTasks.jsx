@@ -6,12 +6,15 @@ const CATEGORIES = ['All', 'Work', 'Study', 'Personal', 'Health', 'General'];
 const PRIORITIES = ['All', 'High', 'Medium', 'Low'];
 
 function MyTasks() {
-  const { masterTasks, addMasterTask, updateMasterTask, deleteMasterTask, addTaskToDay, todayKey } = useApp();
+  const { masterTasks, dailyPlans, addMasterTask, updateMasterTask, deleteMasterTask, addTaskToDay, todayKey } = useApp();
   const [filterCat, setFilterCat] = useState('All');
   const [filterPri, setFilterPri] = useState('All');
   const [search, setSearch] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [editTask, setEditTask] = useState(null);
+
+  const today = todayKey();
+  const todayIds = new Set(dailyPlans[today] || []);
 
   const filtered = masterTasks.filter((t) => {
     const matchCat = filterCat === 'All' || t.category === filterCat;
@@ -108,11 +111,12 @@ function MyTasks() {
               </div>
               <div className="library-task-actions">
                 <button
-                  className="btn-add-to-today"
+                  className={`btn-add-to-today ${todayIds.has(task.id) ? 'btn-in-today' : ''}`}
                   onClick={() => handleAddToToday(task.id)}
-                  title="Add to today's plan"
+                  disabled={todayIds.has(task.id)}
+                  title={todayIds.has(task.id) ? "Already in today's plan" : "Add to today's plan"}
                 >
-                  ➕ Add to Today
+                  {todayIds.has(task.id) ? "✓ In Today's Plan" : "➕ Add to Today"}
                 </button>
                 <button
                   className="btn-icon-sm btn-edit"

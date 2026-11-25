@@ -23,7 +23,13 @@ function saveToStorage(key, value) {
   } catch {}
 }
 
-const todayKey = () => new Date().toISOString().slice(0, 10);
+const todayKey = () => {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+};
 
 function AppProvider({ children }) {
   // ── Master task library (all tasks ever created) ──────────────────────────
@@ -94,6 +100,17 @@ function AppProvider({ children }) {
       const updated = { ...prev };
       Object.keys(updated).forEach((date) => {
         updated[date] = updated[date].filter((tid) => tid !== id);
+      });
+      return updated;
+    });
+    // Remove from daily progress snapshots
+    setDailyProgress((prev) => {
+      const updated = { ...prev };
+      Object.keys(updated).forEach((date) => {
+        if (updated[date] && id in updated[date]) {
+          const { [id]: _, ...rest } = updated[date];
+          updated[date] = rest;
+        }
       });
       return updated;
     });

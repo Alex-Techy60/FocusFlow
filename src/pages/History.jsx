@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useApp } from '../context/AppContext';
 import './History.css';
 
@@ -18,11 +18,12 @@ function getDatesWithActivity(dailyPlans) {
 }
 
 function History() {
-  const { dailyPlans, getTasksForDay, toggleTaskForDay, historyDate, setHistoryDate, setActivePage } = useApp();
+  const { dailyPlans, getTasksForDay, toggleTaskForDay, historyDate, setHistoryDate, setActivePage, todayKey } = useApp();
 
+  const today = todayKey();
   const activeDates = getDatesWithActivity(dailyPlans);
   const selectedTasks = getTasksForDay(historyDate);
-  const isToday = historyDate === new Date().toISOString().slice(0, 10);
+  const isToday = historyDate === today;
 
   const completed = selectedTasks.filter((t) => t.completed).length;
   const pct = selectedTasks.length ? Math.round((completed / selectedTasks.length) * 100) : 0;
@@ -46,7 +47,7 @@ function History() {
               className="form-input"
               value={historyDate}
               onChange={(e) => setHistoryDate(e.target.value)}
-              max={new Date().toISOString().slice(0, 10)}
+              max={today}
             />
           </div>
 
@@ -62,7 +63,7 @@ function History() {
                         className={`active-date-btn ${historyDate === date ? 'active-date-active' : ''}`}
                         onClick={() => setHistoryDate(date)}
                       >
-                        <span>{date === new Date().toISOString().slice(0, 10) ? '📍 Today' : date}</span>
+                        <span>{date === today ? '📍 Today' : date}</span>
                         <span className="active-date-count">{tasks} task{tasks !== 1 ? 's' : ''}</span>
                       </button>
                     </li>

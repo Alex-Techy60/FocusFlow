@@ -11,11 +11,14 @@ const CATEGORY_META = {
 };
 
 function Categories() {
-  const { masterTasks, addMasterTask, deleteMasterTask, addTaskToDay, todayKey } = useApp();
+  const { masterTasks, dailyProgress, addMasterTask, deleteMasterTask, addTaskToDay, todayKey } = useApp();
   const [expandedCat, setExpandedCat] = useState(null);
   const [addingTo, setAddingTo] = useState(null);
   const [newTitle, setNewTitle] = useState('');
   const [newPriority, setNewPriority] = useState('Medium');
+
+  const today = todayKey();
+  const todayProgress = dailyProgress[today] || {};
 
   const grouped = Object.keys(CATEGORY_META).reduce((acc, cat) => {
     acc[cat] = masterTasks.filter((t) => (t.category || 'General') === cat);
@@ -24,7 +27,7 @@ function Categories() {
 
   const handleQuickAdd = (cat) => {
     if (!newTitle.trim()) return;
-    const id = addMasterTask({ title: newTitle.trim(), description: '', category: cat, priority: newPriority, completed: false });
+    addMasterTask({ title: newTitle.trim(), description: '', category: cat, priority: newPriority, completed: false });
     setNewTitle('');
     setAddingTo(null);
   };
@@ -42,7 +45,7 @@ function Categories() {
         {Object.entries(CATEGORY_META).map(([cat, meta]) => {
           const tasks = grouped[cat] || [];
           const isOpen = expandedCat === cat;
-          const completed = tasks.filter(t => t.completed).length;
+          const completed = tasks.filter(t => Boolean(todayProgress[t.id])).length;
 
           return (
             <div key={cat} className="category-card" style={{ '--cat-color': meta.color, '--cat-bg': meta.bg }}>

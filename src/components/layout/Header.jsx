@@ -2,7 +2,7 @@ import React from 'react';
 import { useApp } from '../../context/AppContext';
 
 function Header() {
-  const { profile, activePage, sidebarOpen, setSidebarOpen, setActivePage } = useApp();
+  const { profile, activePage, setSidebarOpen, setActivePage } = useApp();
 
   const greeting = () => {
     const h = new Date().getHours();

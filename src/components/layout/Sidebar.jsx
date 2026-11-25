@@ -17,6 +17,13 @@ function Sidebar() {
     ? profile.name.split(' ').map((w) => w[0]).slice(0, 2).join('').toUpperCase()
     : '?';
 
+  const handleNav = (page) => {
+    setActivePage(page);
+    if (window.innerWidth <= 768) {
+      setSidebarOpen(false);
+    }
+  };
+
   return (
     <>
       {/* Mobile overlay */}
@@ -50,7 +57,7 @@ function Sidebar() {
               <li key={item.id}>
                 <button
                   className={`sidebar-item ${activePage === item.id ? 'sidebar-item-active' : ''}`}
-                  onClick={() => setActivePage(item.id)}
+                  onClick={() => handleNav(item.id)}
                   title={!sidebarOpen ? item.label : undefined}
                   aria-current={activePage === item.id ? 'page' : undefined}
                 >
@@ -66,7 +73,7 @@ function Sidebar() {
         <div className="sidebar-footer">
           <button
             className={`sidebar-profile-btn ${activePage === 'Profile' ? 'sidebar-item-active' : ''}`}
-            onClick={() => setActivePage('Profile')}
+            onClick={() => handleNav('Profile')}
             title={!sidebarOpen ? 'Profile' : undefined}
           >
             <div className="sidebar-avatar">{initials}</div>

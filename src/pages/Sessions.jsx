@@ -32,13 +32,6 @@ function Sessions() {
           <p>Create your first daily schedule block — like Work from 9AM to 3PM, Study from 4PM to 6PM, etc.</p>
           <button className="btn-primary" onClick={() => setShowForm(true)}>Create Your First Session</button>
         </div>
-        {showForm && (
-          <SessionForm
-            initialSession={editSession}
-            onClose={() => { setShowForm(false); setEditSession(null); }}
-            onSave={handleSave}
-          />
-        )}
       </div>
     );
   }
@@ -107,15 +100,6 @@ function Sessions() {
 }
 
 function SessionCard({ session, onEdit, onDelete }) {
-  const colorMap = {
-    '#3b82f6': 'blue',
-    '#10b981': 'green',
-    '#f59e0b': 'amber',
-    '#8b5cf6': 'purple',
-    '#ef4444': 'red',
-    '#06b6d4': 'cyan',
-  };
-
   return (
     <div className="session-card" style={{ '--session-color': session.color || '#3b82f6' }}>
       <div className="session-card-header">

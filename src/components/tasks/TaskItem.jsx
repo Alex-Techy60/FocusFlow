@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import editIcon from '../../assets/edit-button.svg';
 import deleteIcon from '../../assets/delete-button.svg';
 
 function TaskItem({ task, onToggle, onRemove }) {

@@ -1,16 +1,16 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useApp } from '../context/AppContext';
 import './Progress.css';
 
 function Progress() {
-  const { getProgressData, masterTasks, dailyProgress, dailyPlans } = useApp();
+  const { getProgressData, masterTasks } = useApp();
   const data = getProgressData();
 
   const totalTasks = masterTasks.length;
   const totalDays = data.length;
   const avgPct = totalDays ? Math.round(data.reduce((sum, d) => sum + d.pct, 0) / totalDays) : 0;
   const bestDay = data.length ? data.reduce((best, d) => d.pct > best.pct ? d : best, data[0]) : null;
-  const streak = useMemo(() => computeStreak(data), [data]);
+  const streak = computeStreak(data);
 
   return (
     <div className="page-container">
@@ -100,7 +100,6 @@ function StatCard({ icon, label, value, sub, color }) {
 }
 
 function BarChart({ data }) {
-  const max = Math.max(...data.map((d) => d.pct), 1);
   const displayData = data.slice(-30); // last 30 days
 
   return (
@@ -140,12 +139,18 @@ function BarChart({ data }) {
 
 function computeStreak(data) {
   if (!data.length) return 0;
-  const today = new Date().toISOString().slice(0, 10);
   let streak = 0;
   const sorted = [...data].sort((a, b) => b.date.localeCompare(a.date));
+  let prevDate = null;
   for (const d of sorted) {
-    if (d.pct > 0) streak++;
-    else break;
+    if (d.pct <= 0) break;
+    if (prevDate) {
+      const diffMs = new Date(prevDate + 'T00:00:00') - new Date(d.date + 'T00:00:00');
+      const diffDays = Math.round(diffMs / 86400000);
+      if (diffDays !== 1) break;
+    }
+    streak++;
+    prevDate = d.date;
   }
   return streak;
 }
