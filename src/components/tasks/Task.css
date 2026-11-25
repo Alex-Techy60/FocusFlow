@@ -1,0 +1,228 @@
+/* Task-Section & List */
+
+.task-section {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.task-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.task-tabs {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f1f5f9;
+    padding: 4px;
+    border-radius: 10px;
+    gap: 4px;
+}
+
+.task-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.task-tab:hover {
+    color: #0f172a;
+}
+
+.task-tab.active {
+    background-color: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.task-tab-count {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background-color: #e2e8f0;
+    color: #475569;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.task-tab.active .task-tab-count {
+    background-color: #eff6ff;
+    color: #2563eb;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-list-empty {
+    padding: 24px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    background-color: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+}
+
+
+/* Task-Item */
+
+.task-item {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.task-item:hover {
+    border-color: #cbd5e1;
+}
+
+.task-item.task-completed {
+    background-color: #f8fafc;
+    opacity: 0.75;
+}
+
+.task-item.task-completed .task-title {
+    text-decoration: line-through;
+    color: #94a3b8;
+}
+
+.task-item-main-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.task-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.toggle-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #3b82f6;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.task-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+    cursor: pointer;
+    word-break: break-word;
+}
+
+.task-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.icon-button {
+    background: transparent;
+    border: none;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease;
+}
+
+.action-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+.update-task-button:hover {
+    background-color: #eff6ff;
+}
+
+.delete-task-button:hover {
+    background-color: #fef2f2;
+}
+
+.task-description {
+    margin: 0;
+    padding-left: 30px;
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.45;
+}
+
+.task-item-footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-left: 30px;
+}
+
+.task-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+.task-category {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+.task-priority-high {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.task-priority-medium {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+.task-priority-low {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.task-date {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}

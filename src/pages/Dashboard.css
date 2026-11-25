@@ -1,0 +1,85 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  align-items: start;
+  gap: 28px;
+  max-width: 1160px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.dashboard-main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
+.dashboard-heading h1 {
+  margin: 0 0 4px 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.dashboard-date {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.dashboard-side-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 28px;
+}
+
+.add-task-cta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.22);
+  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.add-task-cta:hover {
+  background-color: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.add-task-cta:active {
+  transform: scale(0.985);
+}
+
+.add-task-plus {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+@media (max-width: 960px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-side-column {
+    order: -1;
+    position: static;
+  }
+}
